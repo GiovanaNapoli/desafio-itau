@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --lith-blue: #a7c5bd;
+  --light-orange: #e5ddcb;
+  --orange: #eb7b59;
+  --red: #cf4647;
+  --primary: #524656;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Aptos", sans-serif;
+  font-display: swap;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+@font-face {
+  font-family: "Aptos";
+  src: url("assets/fonts/Aptos/aptos-light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aptos";
+  src: url("assets/fonts/Aptos/aptos.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aptos";
+  src: url("assets/fonts/Aptos/aptos-semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aptos";
+  src: url("assets/fonts/Aptos/aptos-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aptos";
+  src: url("assets/fonts/Aptos/aptos-extrabold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Aptos";
+  src: url("assets/fonts/Aptos/aptos-black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
