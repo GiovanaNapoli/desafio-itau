@@ -45,3 +45,9 @@ header {
 
   border-radius: 100%;
 }
+
+@media (min-width: 768px) {
+  .search {
+    width: 50%;
+  }
+}
