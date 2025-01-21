@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Characters } from '../types/characters';
+import { CharactersResponse } from '../types/characters';
 import { Md5 } from 'ts-md5';
 
 @Injectable({
@@ -18,15 +18,17 @@ export class MarvelApiService {
 
   readonly baseUrl = `https://gateway.marvel.com:443/v1/public/characters?ts=${this.ts}&apikey=${this.publicKey}&hash=${this.hash}`;
 
-  getAllCharacters(): Observable<Characters> {
-    console.log(this.baseUrl);
-    return this.httpClient.get<Characters>(this.baseUrl);
-  }
+  // getAllCharacters(): Observable<Characters> {
+  //   console.log(this.baseUrl);
+  //   return this.httpClient.get<Characters>(this.baseUrl);
+  // }
 
-  getCharacterByName(name: string): Observable<Characters> {
+  getCharacterByName(name: string): Observable<CharactersResponse> {
     const replacedName = name.replace(' ', '%20');
-    const params = new HttpParams().set('name', replacedName);
+    const params = new HttpParams().set('name', name);
 
-    return this.httpClient.get<Characters>(this.baseUrl, { params });
+    return this.httpClient
+      .get<CharactersResponse>(this.baseUrl, { params })
+      .pipe();
   }
 }

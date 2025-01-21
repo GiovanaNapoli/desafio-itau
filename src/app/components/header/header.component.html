@@ -1,8 +1,12 @@
 <header>
-  <div class="search">
-    <input type="text" placeholder="Busque o heroi desejado" />
-    <button>
+  <form class="search" [formGroup]="searchForm">
+    <input
+      type="text"
+      placeholder="Busque o heroi desejado"
+      formControlName="search"
+    />
+    <button (click)="onSubmit()">
       <ng-icon name="featherSearch" color="var(--white)" />
     </button>
-  </div>
+  </form>
 </header>

@@ -1,5 +1,5 @@
 <ul class="list-cards">
-  <li>
-    <app-card />
+  <li *ngFor="let character of characters">
+    <app-card [character]="character" />
   </li>
 </ul>
