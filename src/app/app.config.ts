@@ -4,6 +4,7 @@ import { provideNgIconsConfig } from '@ng-icons/core';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,5 +14,6 @@ export const appConfig: ApplicationConfig = {
       size: '24px',
     }),
     provideHttpClient(),
+    provideAnimationsAsync(),
   ],
 };

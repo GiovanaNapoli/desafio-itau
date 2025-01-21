@@ -15,5 +15,26 @@
       alt=""
     />
   </div>
-  <button class="card__button">Ver mais</button>
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Quadrinhos </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ul>
+        <li *ngFor="let comic of character.comics.items">
+          <p>{{ comic.name }}</p>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Filmes </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ul>
+        <li *ngFor="let series of character.series.items">
+          <p>{{ series.name }}</p>
+        </li>
+      </ul>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
