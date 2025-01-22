@@ -20,7 +20,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title> Quadrinhos </mat-panel-title>
       </mat-expansion-panel-header>
-      <ul>
+      <ul class="card__comic">
         <li *ngFor="let comic of character.comics.items">
           <p>{{ comic.name }}</p>
         </li>
@@ -30,7 +30,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title> Filmes </mat-panel-title>
       </mat-expansion-panel-header>
-      <ul>
+      <ul class="card__comic">
         <li *ngFor="let series of character.series.items">
           <p>{{ series.name }}</p>
         </li>

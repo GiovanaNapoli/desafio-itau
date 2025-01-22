@@ -9,7 +9,7 @@
 
   width: 350px;
 
-  border: 1px solid var(--primary);
+  border: 1px solid var(--light-grey);
   border-radius: 8px;
 }
 
@@ -56,4 +56,8 @@
 
   background-color: var(--red);
   color: var(--white);
+}
+
+.card__comic {
+  list-style-type: none;
 }

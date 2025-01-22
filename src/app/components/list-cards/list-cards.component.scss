@@ -1,14 +1,10 @@
 .list-cards {
+  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
   gap: 12px;
 
-  max-width: 90%;
-  margin: 0 auto;
-}
-
-.list-cards li {
-  list-style-type: none;
+  max-width: 100%;
 }
