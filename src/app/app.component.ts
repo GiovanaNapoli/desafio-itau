@@ -12,13 +12,16 @@ import { MarvelApiService } from './services/marvel-api.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  title = 'desafio-itau';
   characterSearched: Characters[] = [];
+  hasBeenSearched = false;
 
   constructor(private marvelApiService: MarvelApiService) {}
 
   onSubmit(search: string) {
     this.marvelApiService.getCharacterByName(search).subscribe((response) => {
       this.characterSearched = response.data.results;
+      this.hasBeenSearched = true;
     });
   }
 }

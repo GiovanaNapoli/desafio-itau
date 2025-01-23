@@ -1,5 +1,19 @@
-<ul class="list-cards">
-  <li *ngFor="let character of characters">
-    <app-card [character]="character" />
-  </li>
-</ul>
+<div>
+  @if(hasBeenSearched && characters.length > 0) {
+  <ul class="list-cards">
+    <li *ngFor="let character of characters">
+      <app-card [character]="character" />
+    </li>
+  </ul>
+  } @else if (hasBeenSearched && characters.length === 0){
+  <div class="list-cards__notSearched">
+    <!-- <img src="/assets/images/svg/search.svg" alt="imagem" /> -->
+    <p>Não foram encontrados resultados para sua pesquisa</p>
+  </div>
+  } @else {
+  <div class="list-cards__notSearched">
+    <!-- <img src="/assets/images/svg/search.svg" alt="imagem" /> -->
+    <p>Faça uma pesquisa</p>
+  </div>
+  }
+</div>

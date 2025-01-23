@@ -12,13 +12,5 @@ import { NgFor } from '@angular/common';
 })
 export class ListCardsComponent {
   @Input() characters: Characters[] = [];
-
-  constructor(private marvelApiService: MarvelApiService) {}
-
-  ngOnInit(): void {
-    // this.marvelApiService
-    //   .getAllCharacters()
-    //   .subscribe((data) => console.log(data));
-    // // console.log('ngOnInit');
-  }
+  @Input() hasBeenSearched!: boolean;
 }

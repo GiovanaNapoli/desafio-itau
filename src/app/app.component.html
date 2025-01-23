@@ -1,4 +1,7 @@
 <div class="app-container">
   <app-header (submitEvent)="onSubmit($event)" />
-  <app-list-cards [characters]="characterSearched" />
+  <app-list-cards
+    [characters]="characterSearched"
+    [hasBeenSearched]="hasBeenSearched"
+  />
 </div>
