@@ -1,59 +1,31 @@
-# DesafioItau
+# Desafio Técnico Itau
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.2.
+Este repositório comtém a solução do desafio técnico proposto pela Itau. Foi utilizado o framework Angular na versão 19.1.2.
 
-## Development server
+## ⚙️ Como executar o projeto
 
-To start a local development server, run:
+Para executar o projeto, é necessário ter instalado o Node.js e o Angular CLI.
 
-```bash
-ng serve
-```
+Após clonar o repositório, execute o comando `npm install` para instalar as dependências do projeto.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Após a instalação das dependências, execute o comando `ng serve` para iniciar o servidor de desenvolvimento.
 
-## Code scaffolding
+Acesse o projeto em [https://desafio-itau-khaki.vercel.app/](https://desafio-itau-khaki.vercel.app/).
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📖 Sobre o desafio
 
-```bash
-ng generate component component-name
-```
+O desafio consiste em criar uma aplicação web/mobile responsiva que exiba herois da Marvel pesquisados pelo nome. Esses dados devem ser obtidos através da API da Marvel. Sendo os dados:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Nome
+- Foto
+- Descrição
+- Participações em quadrinhos
+- Participações em séries
 
-```bash
-ng generate --help
-```
+## Features
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [x] Pesquisar por nome e exibir os resultados
+- [ ] Exibir um feedback de carregamento enquanto os dados são buscados
+- [ ] Exibir um feedback quando a busca não retorna resultados
+- [ ] Exibir uma notifição caso perca a conexão com a internet
+- [ ] Acessar os dados de um heroi já pesquisado de modo offline
