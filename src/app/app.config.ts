@@ -1,10 +1,22 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideNgIconsConfig } from '@ng-icons/core';
+import {
+  BrowserAnimationsModule,
+  provideAnimations,
+} from '@angular/platform-browser/animations';
 
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { loadingInterceptor } from './interceptors/loadingInterceptor';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +25,9 @@ export const appConfig: ApplicationConfig = {
     provideNgIconsConfig({
       size: '24px',
     }),
-    provideHttpClient(),
-    provideAnimationsAsync(),
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: loadingInterceptor, multi: true },
+    importProvidersFrom([BrowserAnimationsModule]),
+    provideAnimations(),
   ],
 };

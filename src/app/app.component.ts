@@ -4,10 +4,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { ListCardsComponent } from './components/list-cards/list-cards.component';
 import { Characters } from './types/characters';
 import { MarvelApiService } from './services/marvel-api.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, ListCardsComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    ListCardsComponent,
+    NgxSpinnerModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
