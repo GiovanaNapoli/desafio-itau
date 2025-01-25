@@ -10,12 +10,11 @@ import {
   provideAnimations,
 } from '@angular/platform-browser/animations';
 
-import {
-  HTTP_INTERCEPTORS,
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
+
 import { loadingInterceptor } from './interceptors/loadingInterceptor';
+import { networkInterceptor } from './interceptors/networkInterceptor';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -25,9 +24,15 @@ export const appConfig: ApplicationConfig = {
     provideNgIconsConfig({
       size: '24px',
     }),
-    provideHttpClient(withInterceptorsFromDi()),
-    { provide: HTTP_INTERCEPTORS, useClass: loadingInterceptor, multi: true },
+    provideHttpClient(
+      withInterceptors([loadingInterceptor, networkInterceptor])
+    ),
     importProvidersFrom([BrowserAnimationsModule]),
-    provideAnimations(),
+    provideAnimations(), // required animations providers
+    provideToastr({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }), // Toastr providers
   ],
 };
