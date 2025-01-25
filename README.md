@@ -27,7 +27,7 @@ O desafio consiste em criar uma aplicação web/mobile responsiva que exiba hero
 - [x] Pesquisar por nome e exibir os resultados
 - [x] Exibir um feedback de carregamento enquanto os dados são buscados
 - [ ] Exibir um feedback quando a busca não retorna resultados
-- [ ] Exibir uma notifição caso perca a conexão com a internet
+- [x] Exibir uma notifição caso perca a conexão com a internet
 - [ ] Acessar os dados de um heroi já pesquisado de modo offline
 
 ## Detalhes do desenvolvimento
