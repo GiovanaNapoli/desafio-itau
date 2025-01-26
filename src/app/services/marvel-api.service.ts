@@ -18,13 +18,7 @@ export class MarvelApiService {
 
   readonly baseUrl = `https://gateway.marvel.com:443/v1/public/characters?ts=${this.ts}&apikey=${this.publicKey}&hash=${this.hash}`;
 
-  // getAllCharacters(): Observable<Characters> {
-  //   console.log(this.baseUrl);
-  //   return this.httpClient.get<Characters>(this.baseUrl);
-  // }
-
   getCharacterByName(name: string): Observable<CharactersResponse> {
-    const replacedName = name.replace(' ', '%20');
     const params = new HttpParams().set('name', name);
 
     return this.httpClient

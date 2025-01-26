@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { CardComponent } from '../card/card.component';
-import { MarvelApiService } from '../../services/marvel-api.service';
 import { Characters } from '../../types/characters';
 import { NgFor } from '@angular/common';
 

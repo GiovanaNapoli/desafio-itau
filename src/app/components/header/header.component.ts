@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { featherSearch } from '@ng-icons/feather-icons';
-import { MarvelApiService } from '../../services/marvel-api.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +10,7 @@ import { MarvelApiService } from '../../services/marvel-api.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Output() submitEvent = new EventEmitter();
   searchForm!: FormGroup;
 
