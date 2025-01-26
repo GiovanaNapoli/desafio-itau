@@ -1,7 +1,7 @@
 import {
   ApplicationConfig,
   importProvidersFrom,
-  provideZoneChangeDetection,
+  provideZoneChangeDetection, isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideNgIconsConfig } from '@ng-icons/core';
@@ -16,6 +16,7 @@ import { provideToastr } from 'ngx-toastr';
 import { loadingInterceptor } from './interceptors/loadingInterceptor';
 import { networkInterceptor } from './interceptors/networkInterceptor';
 import { routes } from './app.routes';
+import { provideServiceWorker } from '@angular/service-worker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,6 +34,9 @@ export const appConfig: ApplicationConfig = {
       timeOut: 10000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    }), // Toastr providers
+    }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }), // Toastr providers
   ],
 };
