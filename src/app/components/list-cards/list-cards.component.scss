@@ -11,10 +11,18 @@
 
 .list-cards__notSearched {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
+
+  gap: 32px;
+}
+
+.list-cards__notSearched p {
+  font-weight: 700;
+  text-align: center;
 }
 
 .list-cards__notSearched img {
