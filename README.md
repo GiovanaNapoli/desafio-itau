@@ -1,6 +1,6 @@
-# Desafio Técnico Itau
+# Desafio Técnico
 
-Este repositório comtém a solução do desafio técnico proposto pela Itau. Foi utilizado o framework Angular na versão 19.1.2.
+Este repositório comtém a solução do desafio técnico. Foi utilizado o framework Angular na versão 19.1.2.
 
 ## ⚙️ Como executar o projeto
 
@@ -10,7 +10,7 @@ Após clonar o repositório, execute o comando `npm install` para instalar as de
 
 Após a instalação das dependências, execute o comando `ng serve` para iniciar o servidor de desenvolvimento.
 
-Acesse o projeto em [https://desafio-itau-khaki.vercel.app/](https://desafio-itau-khaki.vercel.app/).
+Acesse o projeto em ([https://desafio-tecnico-khaki.vercel.app/](https://desafio-tecnico-khaki.vercel.app)).
 
 ## 📖 Sobre o desafio
 
