@@ -18,7 +18,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'desafio-itau';
+  title = 'desafio-tecnico';
   characterSearched: Characters[] = [];
   hasBeenSearched = false;
 
