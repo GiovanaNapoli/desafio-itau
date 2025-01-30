@@ -1,14 +1,15 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, from, map, Observable, switchMap } from 'rxjs';
 import { CharactersResponse } from '../types/characters';
 import { Md5 } from 'ts-md5';
+import { DbServiceService } from './db-service.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MarvelApiService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private db: DbServiceService) {}
 
   ts = new Date().getTime().toString();
   publicKey = 'b9b36eacce7c01529d2eae44ab5e7da2';
@@ -23,6 +24,17 @@ export class MarvelApiService {
 
     return this.httpClient
       .get<CharactersResponse>(this.baseUrl, { params })
-      .pipe();
+      .pipe(
+        map((response) => response),
+        switchMap((response) => {
+          return from(this.db.characters.bulkPut(response.data.results)).pipe(
+            map(() => response)
+          );
+        }),
+        catchError((error) => {
+          console.error('Erro na requisição:', error);
+          throw error;
+        })
+      );
   }
 }
