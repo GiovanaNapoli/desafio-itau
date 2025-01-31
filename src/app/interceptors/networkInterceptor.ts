@@ -24,7 +24,7 @@ export function networkInterceptor(
     spiner.hide();
 
     return from(
-      db.characters.where('name').startsWithIgnoreCase(searchQuery).toArray()
+      db.characters.where('name').equalsIgnoreCase(searchQuery).toArray()
     ).pipe(
       switchMap((cacheData) => {
         if (cacheData.length > 0) {
@@ -39,7 +39,9 @@ export function networkInterceptor(
             })
           );
         } else {
-          toast.error('Você está offline!');
+          toast.error(
+            'Você está offline e o termo pesquisado não foi encontrado localmente!'
+          );
           return of(
             new HttpResponse({ status: 200, body: { data: { results: [] } } })
           );

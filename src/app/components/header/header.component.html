@@ -9,4 +9,13 @@
       <ng-icon name="featherSearch" color="var(--white)" />
     </button>
   </form>
+  <div
+    *ngIf="
+      searchForm.get('search')?.invalid && searchForm.get('search')?.touched
+    "
+  >
+    <small style="color: var(--white)"
+      >O campo de pesquisa é obrigatório!</small
+    >
+  </div>
 </header>
