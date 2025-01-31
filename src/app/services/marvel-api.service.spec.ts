@@ -5,8 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { MarvelApiService } from './marvel-api.service';
 import { DbServiceService } from './db-service.service';
-import { CharactersResponse } from '../types/characters';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { mockResponse } from '../mocks/mocks';
 
 describe('MarvelApiService', () => {
