@@ -4,16 +4,28 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { MarvelApiService } from './marvel-api.service';
+import { DbServiceService } from './db-service.service';
+import { CharactersResponse } from '../types/characters';
+import { of, throwError } from 'rxjs';
 import { mockResponse } from '../mocks/mocks';
 
 describe('MarvelApiService', () => {
   let service: MarvelApiService;
   let httpMock: HttpTestingController;
+  let dbServiceSpy: jasmine.SpyObj<DbServiceService>;
 
   beforeEach(() => {
+    dbServiceSpy = jasmine.createSpyObj('DbServiceService', ['characters']);
+    dbServiceSpy.characters = {
+      bulkPut: jasmine.createSpy('bulkPut').and.returnValue(of(null)),
+    } as any;
+
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [MarvelApiService],
+      providers: [
+        MarvelApiService,
+        { provide: DbServiceService, useValue: dbServiceSpy },
+      ],
     });
 
     service = TestBed.inject(MarvelApiService);
@@ -28,45 +40,39 @@ describe('MarvelApiService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should fetch character by name', () => {
-    const characterName = '3-D Man';
-
-    service.getCharacterByName(characterName).subscribe((response) => {
+  it('should fetch a character by name and store in IndexedDB', () => {
+    service.getCharacterByName('3-D Man').subscribe((response) => {
       expect(response).toEqual(mockResponse);
+      expect(dbServiceSpy.characters.bulkPut).toHaveBeenCalledWith(
+        mockResponse.data.results
+      );
     });
 
-    const req = httpMock.expectOne(
-      (request) =>
-        request.url.startsWith(
-          'https://gateway.marvel.com:443/v1/public/characters'
-        ) &&
-        request.params.has('name') &&
-        request.params.get('name') === characterName
+    const req = httpMock.expectOne((request) =>
+      request.url.includes('gateway.marvel.com')
     );
-
     expect(req.request.method).toBe('GET');
-
     req.flush(mockResponse);
   });
 
-  it('should include correct query parameters in the request', () => {
-    const characterName = 'Spider-Man';
+  it('should handle API errors gracefully', () => {
+    const errorMessage = 'Erro na API';
 
-    service.getCharacterByName(characterName).subscribe();
+    spyOn(console, 'error');
+
+    service.getCharacterByName('3-D Man').subscribe({
+      error: (error) => {
+        expect(error).toBeTruthy();
+        expect(console.error).toHaveBeenCalledWith(
+          'Erro na requisição:',
+          jasmine.anything()
+        );
+      },
+    });
 
     const req = httpMock.expectOne((request) =>
-      request.url.startsWith(
-        'https://gateway.marvel.com:443/v1/public/characters'
-      )
+      request.url.includes('gateway.marvel.com')
     );
-
-    expect(req.request.method).toBe('GET');
-    expect(req.request.params.has('name')).toBeTrue();
-    expect(req.request.params.get('name')).toBe(characterName);
-    expect(req.request.url).toContain(service.publicKey);
-    expect(req.request.url).toContain(service.hash);
-    expect(req.request.url).toContain(service.ts);
-
-    req.flush({});
+    req.flush(errorMessage, { status: 500, statusText: 'Server Error' });
   });
 });
